@@ -1,0 +1,48 @@
+{% extends 'admin_base.html' %}
+
+{% block main %}
+
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2" style="border-bottom:2px solid orange">Employee Details</h5>
+        <div class="container fluid">
+            <table id="example" class="table table-bordered table-hover">
+                <thead class="text-light  bg-danger">
+                    <tr>
+                        <th> Sr.no</th>
+                        <th> Employee code</th>
+                        <th> Name</th>
+                        <th> Email Id</th>
+                        <th> Contact No.</th>
+                        <th> Joining Date</th>
+                        <th> Action</th>
+                        <th>Leave</th>
+                        <th> Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in employee %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.empcode}}</td>
+                        <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                        <td>{{i.user.username}}</td>
+                        <td>{{i.contact}}</td>
+                        <td>{{i.joiningdate}}</td>
+                        <td><a href="{% url 'edit_profile' i.user.id %}" class="btn btn-info m-2 px-4">Edit Profile</a>
+                            <br>
+                            <a href="{% url 'edit_education' i.user.id %}" class="btn btn-info m-2">Edit Education</a>
+                            <br>
+                            <a href="{% url 'edit_experience' i.user.id %}" class="btn btn-info m-2">Edit Experience</a></td>
+                        <td><a href="{% url 'edit_leave' i.user.id %}" class="btn btn-info m-2">Leave</a></td>
+                        <td><a href="{% url 'delete_employee' i.user.id %}" class="btn btn-danger m-2">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

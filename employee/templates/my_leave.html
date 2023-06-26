@@ -1,0 +1,102 @@
+{% extends 'emp_base.html' %}
+
+{% block main %}
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" /> -->
+ 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<!-- <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css'> -->
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js' type='text/javascript'></script>
+
+<!-- Datepicker -->
+<link href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css' rel='stylesheet' type='text/css'>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js' type='text/javascript'></script>
+
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2 text-danger" style="border-bottom:2px solid rgb(157, 242, 223)">My Leave</h5>
+        <div class="container fluid">
+            <form method="post">
+                {% csrf_token %}
+            
+            
+            <table class="table table-bordered">
+                <!-- <tr>
+                    <th>Employee Name</th>
+                    <td><input type="text" name="coursepg" class="form-control" value="{{education.coursepg}}"></td>
+                </tr> -->
+                <tr>
+                    <th>Start Date</th>
+                    <td><input type="text" name="start_date" class="form-control" id='datepicker' value="{{leave.start_date}}" ></td>
+                    <!-- <td><input type="text" name="start_date" class="form-control" value="{{leave.start_date}}"></td> -->
+                    <!-- <td><input type="text" name="daterange" class="form-control" value="01/01/2015 - 01/31/2015" /></td> -->
+                </tr>
+                <tr>
+                    <th>End Date</th>
+                    <td><input type="text" name="end_date" class="form-control" id='datepicker1' value="{{leave.end_date}}" ></td>
+                    <!-- <td><input type="text" name="end_date" class="form-control" value="{{leave.end_date}}"></td> -->
+                    <!-- <td><input type="text" name="daterange" class="form-control" value="01/01/2015 - 01/31/2015" /></td> -->
+                </tr>
+                <tr>
+                    <th>Reason</th>
+                    <td><input type="text" name="reason" class="form-control" value="{{leave.reason}}"></td>
+                </tr>     
+                <tr>
+                    <th><label for="status">Status</label></th>
+                    <td class="form-control" >
+                        <select id="status" name="status" >
+                            <option value="{{leave.status}}">{{leave.status}}</option>
+                            <option value="pending">pending</option>
+                            
+                          </select>
+                    </td>
+                    
+                </tr>      
+            </table>
+            <center><input type="submit" value="Submit" class="btn btn-primary m-2 px-3"></center>
+        </form>
+        </div>
+    </div>
+</div>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#datepicker').datepicker(); 
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#datepicker1').datepicker(); 
+        });
+    </script>
+<!-- <script type="text/javascript">
+    $(function() {
+        $('input[name="daterange"]').daterangepicker();
+    });
+    </script> -->
+
+
+    {% if error1 == "yes" %}
+    <script>
+        alert('Something went wrong. Please try again.');
+    </script>
+{% else %}
+    {% if error == "no" %}
+        <script>
+            alert('Leave Status Has Been Updated Successfully');
+            window.location= ('{% url 'my_leave' %}');
+        </script>
+    {% endif %}
+    {% if error == "yes" %}
+        <script>
+            alert('Something went wrong. Please try again.');
+        </script>
+    {% endif %}
+{% endif %}
+
+
+{% endblock %}
