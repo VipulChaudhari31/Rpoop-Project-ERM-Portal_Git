@@ -461,6 +461,7 @@ def my_leave(request):
         end_date = request.POST['end_date']
         reason = request.POST['reason']
         status = request.POST['status']
+        leavetype = request.POST['leavetype']
         if status == 'pending':
             error1="no"
         else:
@@ -496,6 +497,7 @@ def edit_leave(request,pid):
         end_date = request.POST['end_date']
         reason = request.POST['reason']
         status = request.POST['status']
+        leavetype = request.POST['leavetype']
 
         
 

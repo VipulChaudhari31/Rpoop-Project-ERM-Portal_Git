@@ -57,7 +57,8 @@ class EmployeeExperience(models.Model):
 class EmployeeLeave(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     start_date = models.CharField(max_length=100,null=True)   
-    end_date = models.CharField(max_length=100,null=True)   
+    end_date = models.CharField(max_length=100,null=True)
+    leavetype = models.CharField(max_length=100,default='casual')   
     reason = models.CharField(max_length=1000,null=True)   
     status = models.CharField(max_length=100,default='pending')   
     def __str__(self):
