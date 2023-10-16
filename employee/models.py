@@ -63,3 +63,13 @@ class EmployeeLeave(models.Model):
     status = models.CharField(max_length=100,default='pending')   
     def __str__(self):
         return self.user.username 
+
+class EmployeeTask(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    work = models.CharField(max_length=1000,null=True) 
+    start_date = models.CharField(max_length=100,null=True)   
+    end_date = models.CharField(max_length=100,null=True)
+    sub_date = models.CharField(max_length=100,null=True)
+    status = models.CharField(max_length=100,default='pending') 
+    def __str__(self):
+        return self.user.username 

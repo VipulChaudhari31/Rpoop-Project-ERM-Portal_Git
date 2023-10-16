@@ -16,7 +16,7 @@
                         <th> Contact No.</th>
                         <th> Joining Date</th>
                         <th> Action</th>
-                        <th>Leave</th>
+                        <th>Leave/Task</th>
                         <th> Delete</th>
                     </tr>
                 </thead>
@@ -34,7 +34,9 @@
                             <a href="{% url 'edit_education' i.user.id %}" class="btn btn-info m-2">Edit Education</a>
                             <br>
                             <a href="{% url 'edit_experience' i.user.id %}" class="btn btn-info m-2">Edit Experience</a></td>
-                        <td><a href="{% url 'edit_leave' i.user.id %}" class="btn btn-info m-2">Leave</a></td>
+                        <td><a href="{% url 'edit_leave' i.user.id %}" class="btn btn-info m-2">Leave</a>
+                            <br>
+                            <a href="{% url 'edit_task' i.user.id %}" class="btn btn-info m-2">Task</a></td>
                         <td><a href="{% url 'delete_employee' i.user.id %}" class="btn btn-danger m-2">Delete</a></td>
                     </tr>
                     {% endfor %}

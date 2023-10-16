@@ -41,4 +41,6 @@ urlpatterns = [
     path('delete_employee/<int:pid>',delete_employee,name='delete_employee'),
     path('my_leave/',my_leave,name='my_leave'),
     path('edit_leave/<int:pid>',edit_leave,name='edit_leave'),
+    path('my_task/',my_task,name='my_task'),
+    path('edit_task/<int:pid>',edit_task,name='edit_task'),
 ]

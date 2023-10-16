@@ -19,6 +19,7 @@ def registration(request):
             EmployeeExperience.objects.create(user=user)
             EmployeeEducation.objects.create(user=user)
             EmployeeLeave.objects.create(user=user)
+            EmployeeTask.objects.create(user=user)
             error="no"
         except:
             error="yes"
@@ -486,6 +487,7 @@ def my_leave(request):
             error="yes"
     return render(request,'my_leave.html',locals()) 
 
+
 def edit_leave(request,pid):
     if not request.user.is_authenticated:
         return redirect('emp_login')
@@ -514,3 +516,75 @@ def edit_leave(request,pid):
             error="yes"
     return render(request,'edit_leave.html',locals())
    
+def my_task(request):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    error=""
+    user=request.user     
+    task = EmployeeTask.objects.get(user = user )
+    if request.method ==  "POST":
+        work = request.POST['work']
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
+        sub_date = request.POST['sub_date']
+        status = request.POST['status']
+        # leavetype = request.POST['leavetype']
+
+        # task.start_date=start_date
+        # task.end_date=end_date
+        task.sub_date=sub_date
+        # task.work=work
+        task.status=status
+
+       
+        try:
+            task.save()
+            error="no"
+        except:
+            error="yes"
+    return render(request,'my_task.html',locals()) 
+
+
+def edit_task(request,pid):
+    if not request.user.is_authenticated:
+        return redirect('emp_login')
+    error=""     
+    user = User.objects.get(id=pid )
+    task = EmployeeTask.objects.get(user = user )
+    if request.method ==  "POST":
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
+        sub_date = request.POST['sub_date']
+        work = request.POST['work']
+        status = request.POST['status']
+        if status == 'pending':
+            error1="no"
+        else:
+            error1="yes"
+            
+        task.start_date=start_date
+        task.end_date=end_date
+        task.work=work
+        if error1 == "no":
+            task.status=status 
+       
+        try:
+            task.save()
+            error="no"
+        except:
+            error="yes"
+        # leavetype = request.POST['leavetype']
+        # task.start_date=start_date
+        # task.end_date=end_date
+        # task.reason=work
+        # task.status=status
+
+       
+        # try:
+        #     task.save()
+        #     error="no"
+        # except:
+        #     error="yes"
+    return render(request,'edit_task.html',locals())
+
+

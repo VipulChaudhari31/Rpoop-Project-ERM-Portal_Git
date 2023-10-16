@@ -24,6 +24,7 @@
                         <a href="{% url 'my_education' %}" class="list-group-item list-group-item-secondary list-group-item-action {% if request.path == '/my_education/' %} active{% endif %}">My Education</a>
                         <a href="{% url 'edit_myeducation' %}" class="list-group-item list-group-item-secondary list-group-item-action {% if request.path == '/edit_myeducation/' %} active{% endif %}">Edit My Education</a>
                         <a href="{% url 'my_leave' %}" class="list-group-item list-group-item-secondary list-group-item-action {% if request.path == '/my_leave/' %} active{% endif %}">Leave</a>
+                        <a href="{% url 'my_task' %}" class="list-group-item list-group-item-secondary list-group-item-action {% if request.path == '/my_task/' %} active{% endif %}">Task</a>
                         <a href="{% url 'change_password' %}" class="list-group-item list-group-item-secondary list-group-item-action {% if request.path == '/change_password/' %} active{% endif %}">Change Password</a>
                         <a href="{% url 'logout' %}" class="list-group-item list-group-item-secondary list-group-item-action">Logout</a>
                     </div>
