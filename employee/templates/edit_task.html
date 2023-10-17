@@ -76,16 +76,22 @@
     });
 </script> -->
 
-{% if error == "no" %}
+{% if error1 == "yes" %}
 <script>
-    alert('Task Status Has Been Updated Successfully');
-    window.location= ('{% url 'edit_task' task.user.id %}');
+    alert('Something went wrong. Please try again.');
 </script>
+{% else %}
+{% if error == "no" %}
+    <script>
+        alert('Task Status Has Been Updated Successfully');
+        window.location= ('{% url 'all_employee' %}');
+    </script>
 {% endif %}
 {% if error == "yes" %}
-<script>
-    alert('Something went wrong try again');
-</script>
+    <script>
+        alert('Something went wrong. Please try again.');
+    </script>
+{% endif %}
 {% endif %}
 
 
